@@ -104,6 +104,24 @@ function Register() {
         <Col md={6}>
           <h3 className="text-center mb-4">Register</h3>
           <Form onSubmit={handleSubmit} noValidate>
+            {/* Name */}
+            <Form.Group controlId="formName" className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                isInvalid={!!errors.name}
+                isValid={!errors.name && formData.name !== ''}
+              />
+              <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+              {!errors.name && formData.name !== '' && (
+                <Form.Text className="text-success">Looks good!</Form.Text>
+              )}
+            </Form.Group>
+            
             {/* Email */}
             <Form.Group controlId="formEmail" className="mb-3">
               <Form.Label>Email address</Form.Label>
@@ -122,23 +140,7 @@ function Register() {
               )}
             </Form.Group>
 
-            {/* Name */}
-            <Form.Group controlId="formName" className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                isInvalid={!!errors.name}
-                isValid={!errors.name && formData.name !== ''}
-              />
-              <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-              {!errors.name && formData.name !== '' && (
-                <Form.Text className="text-success">Looks good!</Form.Text>
-              )}
-            </Form.Group>
+            
 
             {/* Username */}
             <Form.Group controlId="formUsername" className="mb-3">
