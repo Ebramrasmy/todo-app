@@ -1,11 +1,10 @@
-// src/pages/Register.js
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 function Register() {
   const [formData, setFormData] = useState({
-    email: '',
     name: '',
+    email: '',
     username: '',
     password: '',
     confirmPassword: ''

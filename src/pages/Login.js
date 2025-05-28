@@ -66,11 +66,7 @@ function Login() {
           <Form onSubmit={handleSubmit} noValidate>
             <Form.Group controlId="formEmail" className="mb-3">
               <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={handleEmailChange}
+              <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmailChange}
                 isInvalid={!!errors.email}
                 isValid={!errors.email && email !== ""}
               />
@@ -78,7 +74,7 @@ function Login() {
                 {errors.email}
               </Form.Control.Feedback>
               {!errors.email && email !== "" && (
-                <Form.Text className="text-success">Looks good!</Form.Text>
+                <Form.Text className="text-success"> good!</Form.Text>
               )}
             </Form.Group>
 
@@ -96,7 +92,7 @@ function Login() {
                 {errors.password}
               </Form.Control.Feedback>
               {!errors.password && password !== "" && (
-                <Form.Text className="text-success">Password looks good!</Form.Text>
+                <Form.Text className="text-success">Password  good!</Form.Text>
               )}
               <Form.Check
                 type="checkbox"

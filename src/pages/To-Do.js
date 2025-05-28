@@ -1,4 +1,3 @@
-// src/pages/TodoPage.js
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, ListGroup } from "react-bootstrap";
 
@@ -109,7 +108,7 @@ function TodoPage() {
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col md={6}>
-          <h3 className="mb-4">To Do List</h3>
+          <h3 className="mb-4">To-Do App!</h3>
           <TodoForm addTask={addTask} />
           <TodoList tasks={tasks} toggleDone={toggleDone} deleteTask={deleteTask} />
         </Col>
