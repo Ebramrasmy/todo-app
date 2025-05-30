@@ -1,12 +1,26 @@
-function NotFound(){
+import React from "react";
+import errorImage from "../images/error-404.jpg";
 
-    return (
-        <>
-            <h1 className="text-center text-danger "> Not Found Page</h1>
-            <h3 className="text-center"> 404 - Not Found </h3>
-        </>
-    )
-
+function NotFound() {
+  return (
+    <div
+      style={{
+        height: "80vh",              
+        display: "flex",              
+        justifyContent: "center",     
+        alignItems: "center",         
+      }}
+    >
+      <img
+        src={errorImage}
+        alt="404 Not Found"
+        style={{
+          height: "80vh",            
+          objectFit: "contain",
+        }}
+      />
+    </div>
+  );
 }
 
-export default NotFound
+export default NotFound;
