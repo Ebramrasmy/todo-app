@@ -103,7 +103,7 @@ function Register() {
         <Col md={6}>
           <h3 className="text-center mb-4">Register</h3>
           <Form onSubmit={handleSubmit} noValidate>
-            {/* Name */}
+
             <Form.Group controlId="formName" className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -121,7 +121,6 @@ function Register() {
               )}
             </Form.Group>
             
-            {/* Email */}
             <Form.Group controlId="formEmail" className="mb-3">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -141,7 +140,6 @@ function Register() {
 
             
 
-            {/* Username */}
             <Form.Group controlId="formUsername" className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
@@ -159,7 +157,6 @@ function Register() {
               )}
             </Form.Group>
 
-            {/* Password */}
             <Form.Group controlId="formPassword" className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -184,7 +181,6 @@ function Register() {
               />
             </Form.Group>
 
-            {/* Confirm Password */}
             <Form.Group controlId="formConfirmPassword" className="mb-3">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control

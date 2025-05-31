@@ -1,27 +1,46 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Container,  Row, Col, Badge, Button } from "react-bootstrap";
+import { Container, Row, Col, Badge, Button } from "react-bootstrap";
+import { LanguageContext } from "../../context/LanguageContext";
+import translations from "../../locales";
 
 function MovieDetails() {
   const { id } = useParams();
   const history = useHistory(); 
+  const { language } = useContext(LanguageContext);
+  const t = translations[language];
 
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
- useEffect(() => {
-  axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-      params: {api_key: "81858cb5fd4b0e627d19e5302d465822"}
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
+      params: {
+        api_key: "81858cb5fd4b0e627d19e5302d465822",
+        language: language,
+      },
     })
-    .then((res) => setMovie(res.data))
-    .catch((err) => console.error("Error fetching movie details", err));
-}, [id]);
+    .then((res) => {
+      setMovie(res.data);
+      setLoading(false);
+      setError(null);
+    })
+    .catch(() => {
+      setError(t.error);
+      setLoading(false);
+    });
+  }, [id, language, t.error]);
 
+  if (loading) return <p>{t.loading}</p>;
+  if (error) return <p>{error}</p>;
 
-  if (!movie) return <p>Loading...</p>;
+  if (!movie) return null;
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" dir={language === "ar" ? "rtl" : "ltr"}>
       <Row className="align-items-start">
         <Col md={5}>
           <img
@@ -31,14 +50,14 @@ function MovieDetails() {
           />
         </Col>
         <Col md={7}>
-          <h2>{movie.title}</h2>
-          <p><strong>Overview:</strong> {movie.overview}</p>
-          <p><strong>Release Date:</strong> <Badge bg="info">{movie.release_date}</Badge></p>
-          <p><strong>Rating:</strong> <Badge bg="warning" text="dark">{movie.vote_average}</Badge></p>
-          <p><strong>Votes Count:</strong> {movie.vote_count}</p>
+          <h2>{language === "ar" && movie.title_ar ? movie.title_ar : movie.title}</h2>
+          <p><strong>{t.overview}:</strong> {movie.overview}</p>
+          <p><strong>{t.releaseDate}:</strong> <Badge bg="info">{movie.release_date}</Badge></p>
+          <p><strong>{t.rating}:</strong> <Badge bg="warning" text="dark">{movie.vote_average}</Badge></p>
+          <p><strong>{t.votesCount}:</strong> {movie.vote_count}</p>
           {movie.genres && (
             <div className="mb-2">
-              <strong>Genres:</strong>{" "}
+              <strong>{t.genres}:</strong>{" "}
               {movie.genres.map((genre) => (
                 <Badge key={genre.id} bg="secondary" className="me-1">
                   {genre.name}
@@ -48,7 +67,7 @@ function MovieDetails() {
           )}
 
           <Button variant="dark" className="mt-4" onClick={() => history.push("/movies")}>
-            Back to List
+             ← Back
           </Button>
         </Col>
       </Row>
